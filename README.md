@@ -1,6 +1,6 @@
 # Breaking Bad API
 
-This project utilizes the breaking bad api to display all the characters of the show and some additional information related to them. We can also filter the results by the appearances in the spin-off 'Better Call Saul'.
+This project utilizes the breaking bad api to display all the characters of the show and some additional information related to them. We can also filter the results by the appearances in the spin-off 'Better Call Saul'. On click of card, one can see the most popular quote from the character.
 
 ## Source: https://breakingbadapi.com/documentation
 
