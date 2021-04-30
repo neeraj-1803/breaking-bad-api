@@ -1,8 +1,8 @@
 import React from 'react'
 
-const CharacterItem = ({item}) => {
+const CharacterItem = ({item, getCharID}) => {
     return (
-        <div className="card">
+        <div className="card" onClick={()=>getCharID([item.char_id, item.name])}>
             <div className="card-inner">
                 <div className="card-front">
                     <img src={item.img} alt='' />
