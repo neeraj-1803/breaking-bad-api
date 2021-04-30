@@ -9,21 +9,31 @@ const App =()=> {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [query, setQuery] = useState('');
+  const [spinoff, setSpinoff] = useState(false);
 
   useEffect(()=>{
     const fetchItems = async() => {
       const result = await axios(`https://www.breakingbadapi.com/api/characters?name=${query}`);
       console.log(result.data);
-      setItems(result.data);
+      if(spinoff){
+        // eslint-disable-next-line
+        const betterCallSaulData = result.data.filter((item)=>{
+          if(item.better_call_saul_appearance.length >0)
+            return item
+        });
+        setItems(betterCallSaulData);
+      }else{
+        setItems(result.data);
+      }
       setIsLoading(false);
     }
     fetchItems();
-  }, [query]);
+  }, [query, spinoff]);
 
   return (
     <div className="container">
       <Header />
-      <Search getQuery={(q)=> setQuery(q)} getLoading={(bool)=>setIsLoading(bool)}/>
+      <Search getQuery={(q)=> setQuery(q)} getLoading={(bool)=>setIsLoading(bool)} getResult={(bool)=> setSpinoff(bool)}/>
       <CharacterGrid items={items} isLoading={isLoading}/>
     </div>
   );
